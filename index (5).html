@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conecta MX — Referencias y Prueba Social</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --purple:#7c3aed;
+  --purple-dark:#6d28d9;
+  --purple-light:#f5f3ff;
+  --black:#0a0a0a;
+  --white:#ffffff;
+  --off:#f8f7f4;
+  --gray:#e5e3de;
+  --gray-text:#6b6860;
+  --green:#16a34a;
+  --font-display:'Bricolage Grotesque',sans-serif;
+  --font-body:'DM Sans',sans-serif;
+}
+body{background:var(--white);color:var(--black);font-family:var(--font-body);overflow-x:hidden}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.97);border-bottom:1px solid var(--gray);padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(8px)}
+.nav-logo{font-family:var(--font-display);font-size:18px;font-weight:800;color:var(--black)}
+.nav-logo span{color:var(--purple)}
+.nav-cta{background:var(--purple);color:#fff;font-size:13px;font-weight:600;padding:10px 20px;border-radius:6px;text-decoration:none;transition:.2s}
+.nav-cta:hover{background:var(--purple-dark)}
+
+/* HERO */
+.hero{background:var(--black);padding:88px 24px 72px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(124,58,237,0.2) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);color:#a78bfa;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:7px 18px;border-radius:100px;margin-bottom:28px}
+.hero-badge::before{content:'●';font-size:8px;animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{font-family:var(--font-display);font-size:clamp(34px,6vw,64px);font-weight:800;line-height:1.05;color:#fff;margin-bottom:18px;letter-spacing:-1.5px}
+.hero h1 em{color:var(--purple);font-style:normal}
+.hero p{font-size:16px;color:rgba(255,255,255,0.5);max-width:460px;margin:0 auto 36px;line-height:1.7}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:700;padding:16px 36px;border-radius:8px;text-decoration:none;transition:.2s;box-shadow:0 0 0 0 rgba(124,58,237,0.4)}
+.hero-btn:hover{background:var(--purple-dark);transform:translateY(-2px);box-shadow:0 8px 32px rgba(124,58,237,0.4)}
+
+/* STATS */
+.stats{background:var(--white);border-bottom:1px solid var(--gray);display:flex;flex-wrap:wrap;justify-content:center}
+.stat{flex:1;min-width:140px;max-width:240px;padding:28px 16px;text-align:center;border-right:1px solid var(--gray)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--font-display);font-size:34px;font-weight:800;color:var(--black);display:block;line-height:1}
+.stat-n span{color:var(--purple)}
+.stat-l{font-size:11px;color:#9e9b94;letter-spacing:1.5px;text-transform:uppercase;margin-top:6px;display:block}
+
+/* SECTIONS */
+.section{padding:80px 24px}
+.inner{max-width:1000px;margin:0 auto}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--purple);margin-bottom:12px}
+.title{font-family:var(--font-display);font-size:clamp(26px,4vw,44px);font-weight:800;line-height:1.1;letter-spacing:-1px;color:var(--black);margin-bottom:14px}
+.sub{font-size:16px;color:var(--gray-text);line-height:1.7;max-width:520px}
+
+/* CASO PROPIO */
+.caso{background:var(--black);padding:80px 24px;position:relative;overflow:hidden}
+.caso::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--purple),transparent)}
+.caso-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.caso .tag{color:#a78bfa}
+.caso .title{color:#fff}
+.caso .sub{color:rgba(255,255,255,0.5);margin-bottom:28px}
+.caso-quote{border-left:3px solid var(--purple);padding-left:18px;margin-bottom:28px}
+.caso-quote p{font-size:14px;color:rgba(255,255,255,0.65);line-height:1.7;font-style:italic}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#fff;font-size:14px;font-weight:600;padding:13px 26px;border-radius:7px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.2);transition:.2s}
+.btn-outline:hover{border-color:var(--purple);background:rgba(124,58,237,0.1)}
+.caso-img{border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:#1a1a1a;aspect-ratio:9/16;max-width:260px;margin:0 auto;position:relative;display:flex;align-items:center;justify-content:center}
+.caso-img img{width:100%;height:100%;object-fit:cover;display:block}
+.caso-badge{position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;font-family:var(--font-display);font-size:12px;font-weight:800;padding:7px 18px;border-radius:100px;white-space:nowrap;box-shadow:0 4px 20px rgba(124,58,237,0.4)}
+
+/* BENEFICIOS */
+.bens{background:var(--off);padding:72px 24px}
+.ben-grid{max-width:1000px;margin:40px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ben{background:#fff;border:1px solid var(--gray);border-radius:14px;padding:28px 24px;transition:.2s}
+.ben:hover{border-color:var(--purple);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.07)}
+.ben-icon{width:46px;height:46px;background:var(--purple-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+.ben-t{font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--black);margin-bottom:8px}
+.ben-d{font-size:13px;color:var(--gray-text);line-height:1.65}
+
+/* UGC */
+.ugc{background:var(--white);padding:80px 24px}
+.ugc-track-wrap{overflow:hidden;margin-top:40px}
+.ugc-track{display:flex;gap:14px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.ugc-card{flex:0 0 calc(20% - 11px);background:var(--off);border:1px solid var(--gray);border-radius:14px;overflow:hidden;aspect-ratio:9/16;position:relative;display:flex;align-items:center;justify-content:center}
+.ugc-card video{width:100%;height:100%;object-fit:cover}
+.ugc-badge-v{position:absolute;top:10px;left:10px;background:rgba(22,163,74,0.9);color:#fff;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:100px}
+.ugc-n{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.6);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:100px}
+.ugc-placeholder{display:flex;flex-direction:column;align-items:center;gap:8px;color:#ccc;text-align:center;padding:16px}
+.ugc-placeholder svg{width:32px;height:32px}
+.ugc-placeholder span{font-size:10px;letter-spacing:1px;text-transform:uppercase}
+.ugc-nav{display:flex;align-items:center;justify-content:space-between;margin-top:20px}
+.dots{display:flex;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--gray);cursor:pointer;transition:.2s;border:none}
+.dot.on{background:var(--purple);width:24px;border-radius:4px}
+.arrows{display:flex;gap:8px}
+.arr{width:38px;height:38px;border-radius:50%;background:var(--white);border:1.5px solid var(--gray);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--black);transition:.2s}
+.arr:hover{border-color:var(--purple);background:var(--purple-light)}
+.arr svg{width:15px;height:15px}
+
+/* TESTIMONIOS */
+.testi{background:var(--off);padding:80px 24px}
+.testi-rating{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:20px}
+.stars{color:#f59e0b;font-size:18px;letter-spacing:2px}
+.rating-n{font-family:var(--font-display);font-size:30px;font-weight:800}
+.rating-l{font-size:13px;color:#9e9b94}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.pill{background:#fff;border:1px solid var(--gray);font-size:12px;font-weight:600;color:var(--gray-text);padding:5px 12px;border-radius:100px}
+.testi-grid{max-width:1000px;margin:40px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+/* WA */
+.wa{background:#ece5dd;border-radius:14px;overflow:hidden;border:1px solid rgba(0,0,0,0.05)}
+.wa-header{background:#075e54;padding:12px 14px;display:flex;align-items:center;gap:10px}
+.wa-av{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:14px}
+.wa-name{font-size:13px;font-weight:700;color:#fff}
+.wa-status{font-size:11px;color:rgba(255,255,255,0.6)}
+.wa-ver{margin-left:auto;background:rgba(255,255,255,0.15);font-size:10px;font-weight:700;color:#fff;letter-spacing:1px;padding:3px 7px;border-radius:4px;text-transform:uppercase}
+.wa-body{padding:14px;display:flex;flex-direction:column;gap:8px}
+.wa-them{background:#fff;border-radius:0 10px 10px 10px;padding:9px 12px;max-width:85%;font-size:12px;color:var(--black);line-height:1.5;box-shadow:0 1px 2px rgba(0,0,0,0.07)}
+.wa-us{background:#d9fdd3;border-radius:10px 0 10px 10px;padding:9px 12px;max-width:85%;font-size:12px;color:var(--black);line-height:1.5;align-self:flex-end;box-shadow:0 1px 2px rgba(0,0,0,0.07)}
+.wa-time{font-size:10px;color:rgba(0,0,0,0.4);margin-top:3px;text-align:right}
+/* IG */
+.ig{background:#fff;border:1px solid var(--gray);border-radius:14px;overflow:hidden}
+.ig-header{padding:12px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #f0eeeb}
+.ig-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center;font-size:13px}
+.ig-handle{font-size:13px;font-weight:700;color:var(--black)}
+.ig-loc{font-size:11px;color:#9e9b94}
+.ig-ver{margin-left:auto;background:var(--off);font-size:10px;font-weight:700;color:var(--green);letter-spacing:1px;padding:3px 7px;border-radius:4px;text-transform:uppercase}
+.ig-img{height:160px;background:var(--off);display:flex;align-items:center;justify-content:center;color:#9e9b94;font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.ig-actions{padding:10px 14px 6px;display:flex;gap:12px;font-size:16px}
+.ig-likes{padding:0 14px 5px;font-size:12px;font-weight:700;color:var(--black)}
+.ig-cap{padding:0 14px 14px;font-size:12px;color:var(--black);line-height:1.55}
+.ig-cap strong{font-weight:700}
+/* FB */
+.fb{background:#fff;border:1px solid var(--gray);border-radius:14px;overflow:hidden}
+.fb-header{padding:12px 14px;display:flex;align-items:center;gap:10px}
+.fb-av{width:40px;height:40px;border-radius:50%;background:#1877f2;display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;font-weight:700}
+.fb-name{font-size:13px;font-weight:700;color:var(--black)}
+.fb-meta{font-size:11px;color:#9e9b94}
+.fb-body{padding:0 14px 12px;font-size:12px;color:var(--black);line-height:1.65}
+.fb-react{padding:9px 14px;border-top:1px solid #f0eeeb;border-bottom:1px solid #f0eeeb;display:flex;justify-content:space-between;font-size:11px;color:#9e9b94}
+.fb-actions{padding:6px 14px;display:flex;gap:4px}
+.fb-btn{flex:1;padding:6px;border-radius:6px;border:none;background:transparent;font-size:11px;font-weight:600;color:var(--gray-text);cursor:pointer;transition:.15s}
+.fb-btn:hover{background:var(--off)}
+
+/* URGENCIA */
+.urgency{background:var(--black);padding:16px 24px;text-align:center}
+.urgency p{font-size:13px;color:rgba(255,255,255,0.8)}
+.urgency strong{color:var(--purple)}
+.live{display:inline-block;animation:flicker 3s ease-in-out infinite}
+@keyframes flicker{0%,100%{opacity:1}50%{opacity:0.7}}
+
+/* REFERENCIAS */
+.refs{background:var(--off);padding:80px 24px}
+.refs-header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:36px;max-width:1100px;margin-left:auto;margin-right:auto}
+.refs-count{font-size:13px;color:#9e9b94;background:#fff;border:1px solid var(--gray);padding:7px 14px;border-radius:100px}
+.refs-count strong{color:var(--black)}
+.refs-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.ref-card{background:#fff;border:1px solid var(--gray);border-radius:10px;overflow:hidden;aspect-ratio:4/3;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center}
+.ref-card:hover{border-color:var(--purple);transform:scale(1.03);box-shadow:0 8px 24px rgba(0,0,0,0.1)}
+.ref-card img{width:100%;height:100%;object-fit:cover;display:block}
+.ref-ph{display:flex;flex-direction:column;align-items:center;gap:6px;color:#ccc}
+.ref-ph svg{width:24px;height:24px}
+.ref-ph span{font-size:10px;letter-spacing:1px;color:#9e9b94;text-transform:uppercase}
+.load-btn{display:block;margin:28px auto 0;background:transparent;border:1.5px solid var(--black);color:var(--black);font-family:var(--font-body);font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:13px 32px;border-radius:7px;cursor:pointer;transition:.2s}
+.load-btn:hover{background:var(--black);color:#fff}
+
+/* FAQ */
+.faq{background:var(--white);padding:80px 24px}
+.faq-inner{max-width:680px;margin:0 auto}
+.faq-list{margin-top:40px}
+.faq-item{border-bottom:1px solid var(--gray);padding:20px 0}
+.faq-q{font-size:14px;font-weight:700;color:var(--black);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;user-select:none;line-height:1.4}
+.faq-icon{width:26px;height:26px;border-radius:50%;background:var(--off);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.25s;color:var(--black)}
+.faq-item.open .faq-icon{background:var(--purple);color:#fff;transform:rotate(45deg)}
+.faq-a{font-size:13px;color:var(--gray-text);line-height:1.75;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s}
+.faq-item.open .faq-a{max-height:300px;padding-top:12px}
+
+/* CTA FINAL */
+.cta{background:var(--black);padding:88px 24px;text-align:center;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 100%,rgba(124,58,237,0.2) 0%,transparent 70%);pointer-events:none}
+.cta .tag{color:#a78bfa;position:relative;z-index:1}
+.cta h2{font-family:var(--font-display);font-size:clamp(30px,5vw,54px);font-weight:800;color:#fff;line-height:1.05;letter-spacing:-1.5px;margin-bottom:14px;position:relative;z-index:1}
+.cta h2 em{color:var(--purple);font-style:normal}
+.cta p{font-size:15px;color:rgba(255,255,255,0.5);margin-bottom:36px;max-width:420px;margin-left:auto;margin-right:auto;line-height:1.65;position:relative;z-index:1}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.btn-wa{display:inline-flex;align-items:center;gap:9px;background:#25d366;color:#fff;font-size:14px;font-weight:700;padding:16px 32px;border-radius:8px;text-decoration:none;transition:.2s}
+.btn-wa:hover{background:#1eb955;transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,0.35)}
+.btn-store{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#fff;font-size:13px;font-weight:600;padding:14px 24px;border-radius:8px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.2);transition:.2s}
+.btn-store:hover{border-color:rgba(255,255,255,0.5)}
+.cta-micro{font-size:11px;color:rgba(255,255,255,0.25);margin-top:18px;position:relative;z-index:1}
+
+/* FOOTER */
+footer{background:#050505;padding:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;border-top:1px solid #111}
+.footer-logo{font-family:var(--font-display);font-size:14px;font-weight:800;color:rgba(255,255,255,0.3)}
+.footer-logo span{color:var(--purple);opacity:.6}
+footer p{font-size:11px;color:#333}
+
+/* MODAL */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.94);z-index:200;align-items:center;justify-content:center;padding:32px 16px}
+.modal.open{display:flex}
+.modal img{max-width:90vw;max-height:85vh;border-radius:10px;object-fit:contain}
+.modal-close{position:fixed;top:18px;right:18px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;z-index:201;transition:.2s}
+.modal-close:hover{background:var(--purple);border-color:var(--purple)}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.fade.on{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .caso-grid{grid-template-columns:1fr;gap:36px}
+  .ben-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .ugc-card{flex:0 0 calc(60% - 10px)}
+  .stat{min-width:50%;border-right:none;border-bottom:1px solid var(--gray)}
+}
+@media(max-width:480px){
+  nav{padding:0 14px}
+  .nav-cta{font-size:11px;padding:8px 12px}
+  .refs-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Conecta<span>MX</span></div>
+  <a class="nav-cta" href="https://agenciaconecta.com">Quiero esto para mi negocio →</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">+50,000 pedidos entregados</div>
+  <h1>¿Tu competencia ya se<br>ve más grande que <em>tú</em>?</h1>
+  <p>Miles de negocios mexicanos ya tomaron la decisión. Las pruebas están aquí — no pedimos que confíes en nuestra palabra.</p>
+  <a class="hero-btn" href="#referencias">Ver las pruebas →</a>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><span class="stat-n">+<span>50K</span></span><span class="stat-l">pedidos entregados</span></div>
+  <div class="stat"><span class="stat-n">3<span>+</span></span><span class="stat-l">años operando</span></div>
+  <div class="stat"><span class="stat-n">&lt;<span>6h</span></span><span class="stat-l">tiempo de entrega</span></div>
+  <div class="stat"><span class="stat-n">98<span>%</span></span><span class="stat-l">clientes satisfechos</span></div>
+</div>
+
+<!-- CASO PROPIO -->
+<div class="caso">
+  <div class="caso-grid">
+    <div class="fade">
+      <div class="tag">Nuestro propio caso de éxito</div>
+      <h2 class="title" style="color:#fff">Nosotros somos<br>la prueba.</h2>
+      <div class="caso-quote"><p>"Antes de ayudarte a crecer a ti, lo hicimos con nosotros mismos. Si no funcionara, no lo venderíamos."</p></div>
+      <p class="sub" style="margin-bottom:28px">Nuestra propia cuenta supera los 100,000 seguidores. No somos un intermediario anónimo — somos un negocio mexicano real.</p>
+      <a class="btn-outline" href="#referencias">Ver referencias de clientes →</a>
+    </div>
+    <div class="fade">
+      <div class="caso-img">
+        <img src="https://i.imgur.com/ZwxySGY.jpg" alt="Cuenta Conecta MX 100K seguidores" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        <div class="caso-badge">+100K seguidores</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BENEFICIOS -->
+<div class="bens">
+  <div class="inner fade" style="text-align:center;margin-bottom:0">
+    <div class="tag">Por qué elegirnos</div>
+    <h2 class="title">Tu éxito, protegido.</h2>
+  </div>
+  <div class="ben-grid">
+    <div class="ben fade"><div class="ben-icon">🔒</div><div class="ben-t">Tu cuenta intocable</div><div class="ben-d">Jamás pedimos contraseñas. Solo necesitamos tu enlace público. Cero riesgo para tu cuenta.</div></div>
+    <div class="ben fade"><div class="ben-icon">🇲🇽</div><div class="ben-t">Empresa mexicana real</div><div class="ben-d">No somos un panel extranjero anónimo. Somos una empresa mexicana con facturación y garantías reales.</div></div>
+    <div class="ben fade"><div class="ben-icon">💬</div><div class="ben-t">No estás solo</div><div class="ben-d">Soporte por WhatsApp en español, con personas reales. Cualquier problema, lo resolvemos.</div></div>
+  </div>
+</div>
+
+<!-- UGC -->
+<div class="ugc section">
+  <div class="inner">
+    <div class="fade">
+      <div class="tag">Comunidad Conecta MX</div>
+      <h2 class="title">La comunidad que<br>ya está creciendo.</h2>
+      <p class="sub">Negocios reales, resultados reales. Esto no es marketing — es lo que dicen nuestros clientes.</p>
+    </div>
+    <div class="ugc-track-wrap">
+      <div class="ugc-track" id="ugc-track">
+        <div class="ugc-card"><div class="ugc-badge-v">✓ Verificado</div><video controls playsinline preload="none" style="width:100%;height:100%;object-fit:cover;"><source src="https://i.imgur.com/r7jIola.mp4" type="video/mp4"></video><div class="ugc-n">1/5</div></div>
+        <div class="ugc-card"><div class="ugc-badge-v">✓ Verificado</div><video controls playsinline preload="none" style="width:100%;height:100%;object-fit:cover;"><source src="https://i.imgur.com/5E3wyIA.mp4" type="video/mp4"></video><div class="ugc-n">2/5</div></div>
+        <div class="ugc-card"><div class="ugc-badge-v">✓ Verificado</div><video controls playsinline preload="none" style="width:100%;height:100%;object-fit:cover;"><source src="https://i.imgur.com/F5Ssl2k.mp4" type="video/mp4"></video><div class="ugc-n">3/5</div></div>
+        <div class="ugc-card"><div class="ugc-badge-v">✓ Verificado</div><video controls playsinline preload="none" style="width:100%;height:100%;object-fit:cover;"><source src="https://i.imgur.com/62K1haH.mp4" type="video/mp4"></video><div class="ugc-n">4/5</div></div>
+        <div class="ugc-card"><div class="ugc-badge-v">✓ Verificado</div><video controls playsinline preload="none" style="width:100%;height:100%;object-fit:cover;"><source src="https://i.imgur.com/BKy1PZh.mp4" type="video/mp4"></video><div class="ugc-n">5/5</div></div>
+      </div>
+    </div>
+    <div class="ugc-nav">
+      <div class="dots" id="dots"></div>
+      <div class="arrows">
+        <button class="arr" onclick="moveUgc(-1)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg></button>
+        <button class="arr" onclick="moveUgc(1)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIOS -->
+<div class="testi">
+  <div class="inner">
+    <div class="fade">
+      <div class="tag">Lo que dicen nuestros clientes</div>
+      <h2 class="title">Palabras reales,<br>de negocios reales.</h2>
+      <div class="testi-rating">
+        <span class="stars">★★★★★</span>
+        <span class="rating-n">4.9</span>
+        <span class="rating-l">/ 5.0 · basado en +800 pedidos</span>
+      </div>
+      <div class="pills">
+        <span class="pill">👥 +1,200 negocios atendidos</span>
+        <span class="pill">✓ 98% vuelven por más</span>
+        <span class="pill">⚡ Entrega promedio 2.4h</span>
+      </div>
+    </div>
+    <div class="testi-grid" style="margin-top:36px">
+      <div class="wa fade">
+        <div class="wa-header"><div class="wa-av">💇</div><div><div class="wa-name">Carlos — Barbería</div><div class="wa-status">en línea</div></div><div class="wa-ver">✓ Real</div></div>
+        <div class="wa-body">
+          <div class="wa-them">Oigan neta funcionó. Ayer una clienta me dijo "vi que tienes muchos seguidores" y agendó cita 😂<div class="wa-time">10:42</div></div>
+          <div class="wa-us">¡Qué gusto Carlos! 🙌<div class="wa-time">10:45 ✓✓</div></div>
+          <div class="wa-them">Si wey, ya voy por el paquete de likes también 💪<div class="wa-time">10:51</div></div>
+        </div>
+      </div>
+      <div class="ig fade">
+        <div class="ig-header"><div class="ig-av">👩</div><div><div class="ig-handle">sofia.boutique</div><div class="ig-loc">Guadalajara, JAL</div></div><div class="ig-ver">✓ Real</div></div>
+        <div class="ig-img">Foto del negocio</div>
+        <div class="ig-actions">❤️ 💬 📤</div>
+        <div class="ig-likes">A <strong>nutri_val</strong> y 842 personas les gusta</div>
+        <div class="ig-cap"><strong>sofia.boutique</strong> Mi tienda tenía 400 seguidores y nadie confiaba en comprarme. Ahora las ventas por DM se triplicaron 🤷‍♀️✨</div>
+      </div>
+      <div class="fb fade">
+        <div class="fb-header"><div class="fb-av">M</div><div><div class="fb-name">Martín — Restaurante</div><div class="fb-meta">Hace 1 d · 🌐</div></div></div>
+        <div class="fb-body">Mi página tenía 800 likes y la del local de enfrente 6,000. Adivinen a dónde iba la gente.<br><br>Contraté a <strong>Conecta MX</strong>, ahora tengo 5,400 y las reservas por Messenger se duplicaron 👏</div>
+        <div class="fb-react"><div>👍😮❤️ Marta, Ana y 127 más</div><div>12 comentarios</div></div>
+        <div class="fb-actions"><button class="fb-btn">👍 Me gusta</button><button class="fb-btn">💬 Comentar</button><button class="fb-btn">↗ Compartir</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- URGENCIA -->
+<div class="urgency">
+  <p>⚡ <span class="live"><strong id="live-n">14</strong> negocios</span> hicieron su pedido en las últimas 24 horas — <strong>¿el tuyo ya está entre ellos?</strong></p>
+</div>
+
+<!-- REFERENCIAS -->
+<div class="refs" id="referencias">
+  <div class="refs-header fade">
+    <div>
+      <div class="tag">Referencias verificadas</div>
+      <h2 class="title">Las pruebas están aquí.<br>Todas.</h2>
+      <p class="sub">"No pedimos que confíes en nuestra palabra — pedimos que veas los números."</p>
+    </div>
+    <div class="refs-count">Mostrando <strong id="shown">0</strong> de <strong id="total">0</strong></div>
+  </div>
+  <div class="refs-grid" id="refs-grid"></div>
+  <button class="load-btn" id="load-btn" onclick="loadMore()">Cargar más referencias</button>
+</div>
+
+<!-- FAQ -->
+<div class="faq">
+  <div class="faq-inner">
+    <div class="fade">
+      <div class="tag">Preguntas frecuentes</div>
+      <h2 class="title">Lo que todo emprendedor<br>pregunta antes de dar el paso.</h2>
+    </div>
+    <div class="faq-list" id="faq-list"></div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <div class="tag">El momento es ahora</div>
+  <h2>Tu competencia ya<br>está usando <em>esto.</em></h2>
+  <p>¿Cuánto tiempo más vas a esperar mientras los demás se ven más grandes que tú?</p>
+  <div class="cta-btns">
+    <a class="btn-wa" href="https://wa.me/526673994086?text=Hola,%20quiero%20crecer%20mi%20negocio%20🚀">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Escribirnos por WhatsApp
+    </a>
+    <a class="btn-store" href="https://agenciaconecta.com">Ver tienda →</a>
+  </div>
+  <p class="cta-micro">Sin contraseñas · Sin compromisos · Primera respuesta en minutos</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Conecta<span>MX</span></div>
+  <p>© 2025 Conecta MX — Centro de México</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="closeModal(event)">
+  <button class="modal-close" onclick="closeModal(event)">✕</button>
+  <img id="modal-img" src="" alt="">
+</div>
+
+<script>
+const IMAGES = [
+  "https://i.imgur.com/ucuiSh6.jpg",
+  "https://i.imgur.com/oxz0kgF.jpg",
+  "https://i.imgur.com/GM4WfES.jpg",
+  "https://i.imgur.com/EOwfC8q.jpg",
+  "https://i.imgur.com/h1wgiLT.jpg",
+  "https://i.imgur.com/sn9sYe4.jpg",
+  "https://i.imgur.com/H1ExWNA.jpg",
+  "https://i.imgur.com/myIvz1M.jpg",
+  "https://i.imgur.com/IluFjMC.jpg",
+  "https://i.imgur.com/EIdk4xu.jpg",
+  "https://i.imgur.com/d9zrlIy.jpg",
+  "https://i.imgur.com/16RuT7O.jpg",
+  "https://i.imgur.com/4u8Lgpv.jpg",
+  "https://i.imgur.com/Tqea7ME.jpg",
+  "https://i.imgur.com/91uh5PV.jpg",
+  "https://i.imgur.com/jcr4Q5c.jpg",
+  "https://i.imgur.com/V2IrQBs.jpg",
+  "https://i.imgur.com/rPQhlZU.jpg",
+  "https://i.imgur.com/7kk6mGP.jpg",
+  "https://i.imgur.com/r4sDzXW.jpg",
+  "https://i.imgur.com/cWGi9jI.jpg",
+  "https://i.imgur.com/uO7CDAX.jpg",
+  "https://i.imgur.com/anwqiT8.jpg",
+  "https://i.imgur.com/ToS3aPk.jpg",
+  "https://i.imgur.com/dK2cNZO.jpg",
+  "https://i.imgur.com/AZMglqa.jpg",
+  "https://i.imgur.com/6dVcDKf.jpg",
+  "https://i.imgur.com/UjVcMHr.jpg",
+  "https://i.imgur.com/UwFEYQs.jpg",
+  "https://i.imgur.com/De3best.jpg",
+];
+
+const BATCH = 15;
+let shown = 0;
+
+function loadMore() {
+  const grid = document.getElementById('refs-grid');
+  const end = Math.min(shown + BATCH, IMAGES.length);
+  for (let i = shown; i < end; i++) {
+    const card = document.createElement('div');
+    card.className = 'ref-card';
+    card.onclick = () => openImg(IMAGES[i]);
+    const img = document.createElement('img');
+    img.src = IMAGES[i];
+    img.alt = 'Referencia ' + (i+1);
+    img.loading = 'lazy';
+    img.onerror = function() {
+      this.parentElement.innerHTML = '<div class="ref-ph"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="22" height="22" rx="3"/><path d="M9 18l5-6 4 5 2-3 5 4"/><circle cx="10" cy="10" r="2"/></svg><span>REF '+(i+1)+'</span></div>';
+    };
+    card.appendChild(img);
+    grid.appendChild(card);
+  }
+  shown = end;
+  document.getElementById('shown').textContent = shown;
+  document.getElementById('total').textContent = IMAGES.length;
+  if (shown >= IMAGES.length) document.getElementById('load-btn').style.display = 'none';
+}
+loadMore();
+
+function openImg(url) {
+  document.getElementById('modal-img').src = url;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modal') || e.currentTarget.classList.contains('modal-close')) {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+// UGC
+const track = document.getElementById('ugc-track');
+const dotsEl = document.getElementById('dots');
+let cur = 0;
+const total = 5;
+for(let i=0;i<total;i++){
+  const d=document.createElement('button');
+  d.className='dot'+(i===0?' on':'');
+  d.onclick=()=>goUgc(i);
+  dotsEl.appendChild(d);
+}
+function moveUgc(dir){
+  const max=total-getVis();
+  cur=Math.max(0,Math.min(cur+dir,max));
+  updateUgc();
+}
+function goUgc(i){cur=i;updateUgc();}
+function getVis(){return window.innerWidth<=768?1:4;}
+function updateUgc(){
+  const cards=track.querySelectorAll('.ugc-card');
+  if(!cards.length)return;
+  const w=cards[0].offsetWidth+14;
+  track.style.transform='translateX(-'+cur*w+'px)';
+  document.querySelectorAll('#dots .dot').forEach((d,i)=>d.classList.toggle('on',i===cur));
+}
+window.addEventListener('resize',updateUgc);
+
+// FAQ
+const faqs=[
+  {q:"¿Esto es una estafa? ¿Cómo sé que es real?",a:"Conecta MX es una empresa mexicana con facturación real, soporte por WhatsApp y garantía de devolución al 100%. Llevamos más de 1,200 negocios atendidos y puedes ver sus resultados aquí mismo."},
+  {q:"¿Se va a notar? ¿No se ve raro un crecimiento repentino?",a:"No. La entrega es progresiva — tus seguidores llegan poco a poco durante horas, como si fuera crecimiento orgánico."},
+  {q:"¿Me pueden banear o suspender la cuenta?",a:"No. Jamás pedimos tu contraseña ni accedemos a tu cuenta. Solo necesitamos tu link público. En más de 1,200 pedidos no hemos tenido un solo caso de suspensión."},
+  {q:"¿Vale la pena para un negocio pequeño?",a:"Especialmente para negocios pequeños. Cuando alguien busca un salón, restaurante o tienda, lo primero que ve es cuántos seguidores tienes. Esta inversión te pone al mismo nivel que tu competencia desde los primeros 15 minutos."},
+  {q:"¿Los seguidores se van a caer después?",a:"Los seguidores mexicanos son permanentes. En el servicio global puede haber variaciones mínimas, pero siempre enviamos cantidad extra de respaldo. Y si algo falla, nuestra garantía te cubre al 100%."},
+  {q:"¿Cuánto tarda en llegar mi pedido?",a:"La mayoría inicia en minutos y se completa en menos de 6 horas."},
+];
+const faqList=document.getElementById('faq-list');
+faqs.forEach((f,i)=>{
+  const item=document.createElement('div');
+  item.className='faq-item';
+  item.id='faq'+i;
+  item.innerHTML='<div class="faq-q" onclick="toggleFaq('+i+')">'+f.q+'<button class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 1v10M1 6h10"/></svg></button></div><div class="faq-a">'+f.a+'</div>';
+  faqList.appendChild(item);
+});
+function toggleFaq(i){
+  document.querySelectorAll('.faq-item').forEach((el,j)=>{if(j!==i)el.classList.remove('open');});
+  document.getElementById('faq'+i).classList.toggle('open');
+}
+
+// Live counter
+const liveEl=document.getElementById('live-n');
+function randomLive(){liveEl.textContent=Math.floor(Math.random()*8)+10;setTimeout(randomLive,Math.random()*30000+20000);}
+setTimeout(randomLive,8000);
+
+// Scroll animations
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
